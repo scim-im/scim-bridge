@@ -20,6 +20,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
+#include <alloca.h>
 
 #include "scim-bridge-debug.h"
 #include "scim-bridge-output.h"
