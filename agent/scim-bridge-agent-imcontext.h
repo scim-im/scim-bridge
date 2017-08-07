@@ -130,6 +130,21 @@ class ScimBridgeAgentIMContext
         static void set_enabled_by_default (bool enabled);
 
         /**
+         * Get the hotkey help messages.
+         *
+         * @return help messages about hotkeys.
+         */
+        static scim::String get_help_hotkeys ();
+
+        /**
+         * Set the hotkey help messages.
+         *
+         * @param hotkey_str Help message about hotkeys.
+         *
+         */
+        static void set_help_hotkeys (const scim::String &hotkey_str);
+
+        /**
          * Destructor.
          */
         virtual ~ScimBridgeAgentIMContext () {}

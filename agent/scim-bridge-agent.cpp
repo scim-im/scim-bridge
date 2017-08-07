@@ -542,6 +542,28 @@ void ScimBridgeAgentImpl::slot_reload_config (const ConfigPointer &config)
     scim_global_config_flush ();
 
     scim_keyboard_layout = scim_get_default_keyboard_layout ();
+
+    // Hot key name, hot key config key.
+    // ! Update hotkey_list_length according to updated list length.
+    int hotkey_list_length = 6;
+    String hotkey_list[][2] = {
+        { "Toggle on/off - ", "/Hotkeys/FrontEnd/Trigger" },
+        { "Turn on - ", "/Hotkeys/FrontEnd/On" },
+        { "Turn off - ", "/Hotkeys/FrontEnd/Off" },
+        { "Next input method - ", "/Hotkeys/FrontEnd/NextFactory" },
+        { "Previous input method - ", "/Hotkeys/FrontEnd/PreviousFactory" },
+        { "Show input method menu - ", "/Hotkeys/FrontEnd/ShowFactoryMenu" }
+    };
+                           
+    // Undefined hot keys are hidden from help window.
+    String help_hotkeys = "\nGlobal Hotkeys:";
+    for ( int i = 0; i < hotkey_list_length; i++ ) {
+        String tmp_hotkeys = scim_config->read (String (hotkey_list[i][1]), String (""));
+        if ( tmp_hotkeys != "" )
+            help_hotkeys += "\n" + hotkey_list[i][0] + "<" + tmp_hotkeys + ">";
+    }
+    ScimBridgeAgentIMContext::set_help_hotkeys (help_hotkeys);
+
 }
 
 

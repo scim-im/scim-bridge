@@ -60,6 +60,8 @@ static unsigned int imengine_id = 0;
 
 static bool on_the_spot_enabled = true;
 
+static String help_hotkeys = "";
+
 /* Class definition */
 class ScimBridgeAgentIMContextImpl: public ScimBridgeAgentIMContext
 {
@@ -273,6 +275,10 @@ void ScimBridgeAgentIMContext::set_on_the_spot_enabled (bool enabled)
     on_the_spot_enabled = enabled;
 }
 
+void ScimBridgeAgentIMContext::set_help_hotkeys (const String &hotkey_str)
+{
+    help_hotkeys = hotkey_str;
+}
 
 ScimBridgeAgentIMContextImpl::ScimBridgeAgentIMContextImpl (ScimBridgeAgentClientListener *new_client_listener):
 client_listener (new_client_listener), imengine (NULL), enabled (false), focused(false) ,preedit_mode (PREEDIT_ANY),
@@ -923,9 +929,11 @@ void ScimBridgeAgentIMContextImpl::panel_commit_string (const WideString &wstr)
 
 void ScimBridgeAgentIMContextImpl::panel_request_help ()
 {
-    String help =  String ("Smart Common Input Method platform ") +
-        String (SCIM_VERSION) +
-        String ("\n(C) 2002-2005 James Su <suzhe@tsinghua.org.cn>\n\n");
+    String help =  String ("SCIM Bridge") + 
+        String (VERSION) +
+        String ("\n(C) 2006-2008 Ryo Dairiki <ryo-dairiki@users.sourceforge.net>\n") +
+        help_hotkeys +
+        String ("\n\n");
 
         IMEngineFactoryPointer factory = scim_backend->get_factory (get_imengine ()->get_factory_uuid ());
         if (factory.null ()) factory = fallback_imengine_factory;
