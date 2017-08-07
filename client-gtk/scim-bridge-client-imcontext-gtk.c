@@ -877,7 +877,7 @@ void scim_bridge_client_imcontext_focus_in (GtkIMContext *context)
         scim_bridge_client_open_messenger ();
     }
 
-    if (is_key_snooper_enabled ()) {
+    if (!key_snooper_used && is_key_snooper_enabled ()) {
         key_snooper_id = gtk_key_snooper_install ((GtkKeySnoopFunc) &key_snooper, NULL);
         key_snooper_used = TRUE;
     }
