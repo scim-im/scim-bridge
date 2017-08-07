@@ -92,6 +92,11 @@ retval_t scim_bridge_display_fetch_current (ScimBridgeDisplay *display)
         const char *c;
         for (c = display_name; TRUE; ++c) {
             if (*c == ':') {
+		/* skip VNC port in HOST::PORT syntax */
+		if (c[1] == ':') {
+		    c++;
+		    continue;
+		}
                 break;
             } else if (*c == '\0') {
                 return RETVAL_FAILED;
