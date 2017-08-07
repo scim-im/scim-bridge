@@ -24,6 +24,7 @@
 #include <unistd.h>
 
 #include <iostream>
+#include <cstdio>
 
 #include "scim-bridge-agent.h"
 
