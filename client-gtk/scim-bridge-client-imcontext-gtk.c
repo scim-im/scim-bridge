@@ -35,6 +35,8 @@
 #include "scim-bridge-output.h"
 #include "scim-bridge-string.h"
 
+#define SEND_EVENT_MASK 0x02
+
 /* Typedef */
 struct _ScimBridgeClientIMContext
 {
@@ -200,7 +202,7 @@ static gboolean key_snooper (GtkWidget *widget, GdkEventKey *event, gpointer dat
 {
     scim_bridge_pdebugln (7, "key_snooper ()");
 
-    if (!event->send_event && scim_bridge_client_is_messenger_opened () && focused_imcontext != NULL) {
+    if (!(event->send_event & SEND_EVENT_MASK) && scim_bridge_client_is_messenger_opened () && focused_imcontext != NULL) {
         if (focused_imcontext->client_window != NULL) {
             int new_window_x;
             int new_window_y;
@@ -556,7 +558,7 @@ void scim_bridge_client_imcontext_forward_key_event (ScimBridgeClientIMContext *
 { 
     GdkEventKey gdk_event;
     scim_bridge_key_event_bridge_to_gdk (&gdk_event, imcontext->client_window, key_event);
-    gdk_event.send_event = TRUE;
+    gdk_event.send_event |= SEND_EVENT_MASK;
     if (imcontext == focused_imcontext && focused_widget != NULL) {
         const char *signal_name = NULL;
         if (scim_bridge_key_event_is_pressed (key_event)) {
@@ -762,7 +764,7 @@ gboolean scim_bridge_client_imcontext_filter_key_event (GtkIMContext *context, G
 
     ScimBridgeClientIMContext *imcontext = SCIM_BRIDGE_CLIENT_IMCONTEXT (context);
     
-    if (!event->send_event && scim_bridge_client_is_messenger_opened () && imcontext != NULL && !key_snooper_used) {
+    if (!(event->send_event & SEND_EVENT_MASK) && scim_bridge_client_is_messenger_opened () && imcontext != NULL && !key_snooper_used) {
 
         if (imcontext->client_window != NULL) {
             int new_window_x;
