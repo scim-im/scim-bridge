@@ -660,6 +660,8 @@ void ScimBridgeAgentIMContextImpl::focus_in ()
 
 void ScimBridgeAgentIMContextImpl::focus_out ()
 {
+    if (!imengine_shared && imengine == NULL) alloc_imengine ();
+
     ScimBridgeAgentIMContext *focused_imcontext = static_cast<ScimBridgeAgentIMContext*> (get_imengine ()->get_frontend_data ());
 
 	if ( !focused )
