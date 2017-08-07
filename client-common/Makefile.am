@@ -17,7 +17,7 @@
 
 if SCIM_BRIDGE_BUILD_IMMODULE
 
-INCLUDES		= -I$(top_srcdir)/common
+AM_CPPFLAGS		= -I$(top_srcdir)/common
 
 noinst_HEADERS		= scim-bridge-client.h  scim-bridge-client-protected.h scim-bridge-client-imcontext.h
 

@@ -17,7 +17,7 @@
 
 MAINTAINERCLEANFILES	= Makefile.in
 
-INCLUDES		= -I$(top_builddir)
+AM_CPPFLAGS		= -I$(top_builddir)
 
 noinst_HEADERS		= scim-bridge-attribute.h \
 					  scim-bridge-debug.h \

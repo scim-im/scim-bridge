@@ -17,7 +17,7 @@
 
 if SCIM_BRIDGE_BUILD_AGENT
 
-INCLUDES		= -I$(top_srcdir) \
+AM_CPPFLAGS		= -I$(top_srcdir) \
                   -I$(top_srcdir)/common \
                   -DSCIM_LOCALEDIR=\"@SCIM_LOCALEDIR@\" \
                   -DSCIM_ICONDIR=\"@SCIM_ICONDIR@\" \

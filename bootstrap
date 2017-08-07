@@ -19,10 +19,5 @@
 ## @start 1
 #! /bin/sh
 
-set -x
-aclocal
-autoheader
-#libtoolize -c --automake 
-automake --add-missing --copy --include-deps
-autoconf
+autoreconf -fiv
 ## @end 1

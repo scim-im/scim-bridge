@@ -17,7 +17,7 @@
 
 if SCIM_BRIDGE_BUILD_QT4_IMMODULE
 
-INCLUDES		= -I$(top_builddir) \
+AM_CPPFLAGS		= -I$(top_builddir) \
 	    		  -I$(top_srcdir) \
 			  -I$(top_srcdir)/common \
 			  -I$(top_srcdir)/client-common
