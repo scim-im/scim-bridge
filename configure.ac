@@ -105,6 +105,10 @@ if test "$SCIM_BRIDGE_HAS_QT4" = "yes"; then
     QT4_PREFIX=`$PKG_CONFIG --variable=prefix QtCore`
   fi
   AC_SUBST(QT4_PREFIX)
+  if test -z "$QT4_LIBDIR"; then
+    QT4_LIBDIR=`$PKG_CONFIG --variable=libdir QtCore`
+  fi
+  AC_SUBST(QT4_LIBDIR)
   enable_qt4_immodule="yes";
 fi
 

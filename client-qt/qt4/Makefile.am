@@ -24,7 +24,7 @@ INCLUDES		= -I$(top_builddir) \
 
 noinst_HEADERS = ../scim-bridge-client-qt.h ../scim-bridge-client-imcontext-qt.h ../scim-bridge-client-key-event-utility-qt.h ../scim-bridge-client-common-qt.h
 
-moduledir = @QT4_PREFIX@/plugins/inputmethods
+moduledir = @QT4_LIBDIR@/plugins/inputmethods
 module_LTLIBRARIES = im-scim-bridge.la
 
 im_scim_bridge_la_SOURCES = ../im-scim-bridge-qt.cpp \
