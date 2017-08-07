@@ -383,6 +383,7 @@ retval_t ScimBridgeAgentClientListenerImpl::process_message (const ScimBridgeMes
         return RETVAL_FAILED;
 
     }
+    return RETVAL_IGNORED;
 }
 
 
