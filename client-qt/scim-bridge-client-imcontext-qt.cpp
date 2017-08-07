@@ -219,14 +219,13 @@ void ScimBridgeClientIMContextImpl::widgetDestroyed (QWidget *widget)
 void ScimBridgeClientIMContextImpl::setFocusWidget (QWidget *widget)
 {
     scim_bridge_pdebugln (4, "ScimBridgeClientIMContextImpl::setFocusWidget ()");
-
-    if (focused_imcontext != NULL) {
-        focused_imcontext->focus_out ();
-        focused_imcontext = NULL;
-    }
-
     QInputContext::setFocusWidget (widget);
-    focus_in ();
+    if (widget == NULL) {
+      focus_out ();
+    }
+    else {
+      focus_in ();
+    }
     update ();
 }
 
@@ -448,15 +447,10 @@ void ScimBridgeClientIMContextImpl::focus_out ()
         }
     }
 
-#ifdef QT4
     if (preedit_shown) {
-        set_preedit_shown (false);
-        update_preedit ();
+      set_preedit_shown (false);
+      update_preedit ();
     }
-#else
-    set_preedit_shown (false);
-    update_preedit ();
-#endif
 
     focused_imcontext = NULL;
 }
