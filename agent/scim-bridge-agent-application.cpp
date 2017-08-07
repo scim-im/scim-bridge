@@ -66,7 +66,7 @@ int main (int argc, char *argv[])
     unsigned int tmp_uint;
 
     int option = 0;
-    while (option != EOF) {
+    while (option != -1) {
         option = getopt_long (argc, argv, short_options, long_options, NULL);
         switch (option) {
             case 'v':
